@@ -11,6 +11,7 @@ import 'package:todo_list_app/screens/view_task/view_task_screen.dart';
 import 'package:todo_list_app/screens/walkthrough/walkthrough_screen.dart';
 import 'package:todo_list_app/screens/work_list/work_list_screen.dart';
 import 'package:todo_list_app/screens/forgot_password/forgot_password_screen.dart';
+import 'package:todo_list_app/screens/reset_password/reset_password_screen.dart';
 
 final Map<String, WidgetBuilder> routes = {
   LogoScreen.routeName: (context) => LogoScreen(),
@@ -25,4 +26,5 @@ final Map<String, WidgetBuilder> routes = {
   ViewTaskScreen.routeName: (context) => ViewTaskScreen(),
   CustomBotNavBar.routeName: (context) => CustomBotNavBar(),
   ForgotPasswordScreen.routeName: (context) => ForgotPasswordScreen(),
+  ResetPasswordScreen.routeName: (context) => ResetPasswordScreen(),  
 };

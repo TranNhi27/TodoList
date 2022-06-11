@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_list_app/components/default_text_button.dart';
 import 'package:todo_list_app/components/title_with_detail.dart';
 import 'package:todo_list_app/screens/forgot_password/components/forgot_password_form.dart';
-// import 'package:todo_list_app/screens/reset_password/reset_password_screen.dart';
+import 'package:todo_list_app/screens/reset_password/reset_password_screen.dart';
 import 'package:todo_list_app/size_config.dart';
 
 class Body extends StatelessWidget {
@@ -23,7 +23,7 @@ class Body extends StatelessWidget {
           DefaultTextButton(
               text: 'Send Request',
               press: () {
-                // Navigator.pushNamed(context, ResetPasswordScreen.routeName);
+                Navigator.pushNamed(context, ResetPasswordScreen.routeName);
               }),
           Spacer(flex: 7,),
         ],
