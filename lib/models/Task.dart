@@ -6,7 +6,8 @@ import 'package:todo_list_app/models/Project.dart';
 import 'User.dart';
 
 class Task extends Project {
-  final String taskTitle, taskSubtitle;
+  final String taskTitle;
+  String hour;
   String date;
   bool value;
   String assignee, description, assigneeAva;
@@ -14,7 +15,7 @@ class Task extends Project {
 
   Task({
     required this.taskTitle,
-    required this.taskSubtitle,
+    this.hour = '',
     this.assignee = '',
     this.date = '',
     this.description = '',
@@ -42,7 +43,7 @@ class Task extends Project {
 List<Task> taskList = [
   Task(
       taskTitle: 'Go fishing with Stephen',
-      taskSubtitle: '9:00am',
+      hour: '9:00am',
       date: DateTime.now().toString(),
       assignee: users[2].name,
       assigneeAva: users[2].avatar,
@@ -52,7 +53,7 @@ List<Task> taskList = [
   ),
   Task(
       taskTitle: 'Meet according with design team at Central Park',
-      taskSubtitle: '9:00am',
+      hour: '9:00am',
       date: DateTime.now().toString(),
       assignee: users[1].name,
       assigneeAva: users[1].avatar,
@@ -62,7 +63,7 @@ List<Task> taskList = [
   ),
   Task(
       taskTitle: 'Sailing with Stephen',
-      taskSubtitle: '9:00am',
+      hour: '9:00am',
       date: DateTime.now().toString(),
       assignee: users[2].name,
       assigneeAva: users[2].avatar,
@@ -75,7 +76,7 @@ List<Task> taskList = [
 List<Task> monthTaskList = [
   Task(
       taskTitle: 'Go fishing with Irene',
-      taskSubtitle: '9:00am',
+      hour: '9:00am',
       date: "2022-06-13",
       assignee: users[2].name,
       assigneeAva: users[2].avatar,
@@ -85,7 +86,7 @@ List<Task> monthTaskList = [
   ),
   Task(
       taskTitle: 'Play golf with Wendy',
-      taskSubtitle: '9:00am',
+      hour: '9:00am',
       date: "2022-06-13",
       assignee: users[1].name,
       assigneeAva: users[1].avatar,
@@ -95,7 +96,7 @@ List<Task> monthTaskList = [
   ),
   Task(
       taskTitle: 'Get supply at Walmart',
-      taskSubtitle: '9:00am',
+      hour: '9:00am',
       date: "2022-06-14",
       assignee: users[1].name,
       assigneeAva: users[1].avatar,
@@ -105,7 +106,7 @@ List<Task> monthTaskList = [
   ),
   Task(
       taskTitle: 'at Walmart',
-      taskSubtitle: '9:00am',
+      hour: '9:00am',
       date: "2022-06-14",
       assignee: users[1].name,
       assigneeAva: users[1].avatar,
@@ -115,7 +116,7 @@ List<Task> monthTaskList = [
   ),
   Task(
       taskTitle: 'Get supply',
-      taskSubtitle: '9:00am',
+      hour: '',
       date: "2022-06-14",
       assignee: users[1].name,
       assigneeAva: users[1].avatar,
@@ -125,7 +126,7 @@ List<Task> monthTaskList = [
   ),
   Task(
       taskTitle: 'Go fishing with Irene',
-      taskSubtitle: '9:00am',
+      hour: '9:00am',
       date: "2022-06-13",
       assignee: users[2].name,
       assigneeAva: users[2].avatar,

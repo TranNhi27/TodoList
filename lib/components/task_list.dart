@@ -98,7 +98,7 @@ class _TaskListState extends State<TaskList> {
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
         style: TextStyle(decoration: task.value ? TextDecoration.lineThrough : TextDecoration.none),),
-      subtitle: Text(task.taskSubtitle, style: TextStyle(decoration: task.value ? TextDecoration.lineThrough : TextDecoration.none),),
+      subtitle: Text(task.hour, style: TextStyle(decoration: task.value ? TextDecoration.lineThrough : TextDecoration.none),),
       contentPadding: EdgeInsets.only(
           left: 25,
           right: 0),

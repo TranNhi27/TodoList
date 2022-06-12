@@ -21,7 +21,7 @@ class DateField extends StatefulWidget {
 class _DateFieldState extends State<DateField> {
   String time = 'Anytime';
   AlertDialog dialog = AlertDialog();
-  Task task = Task(taskTitle: '', taskSubtitle: '');
+  Task task = Task(taskTitle: '');
   @override
   Widget build(BuildContext context) {
     PopUpCalendar popUpCalendar = PopUpCalendar(task: task);

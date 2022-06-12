@@ -17,10 +17,10 @@ class FillingForm extends StatefulWidget {
 class _FillingFormState extends State<FillingForm> {
   final _formKey = GlobalKey<FormState>();
   List<Task> taskList = [
-    Task(taskTitle: 'Go fishing with Stephen', taskSubtitle: '9:00am'),
+    Task(taskTitle: 'Go fishing with Stephen', date: '9:00am'),
     Task(
-        taskTitle: 'Meet according with design team..', taskSubtitle: '9:00am'),
-    Task(taskTitle: 'Go fishing with Stephen', taskSubtitle: '9:00am'),
+        taskTitle: 'Meet according with design team..', date: '9:00am'),
+    Task(taskTitle: 'Go fishing with Stephen', date: '9:00am'),
   ];
 
   @override
