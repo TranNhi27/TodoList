@@ -70,10 +70,11 @@ class TaskForm extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: k24Padding),
                 child: DefaultTextButton(text: 'Add Task', press: () {
-                  taskList.add(new Task(taskTitle: selectedTitle, taskSubtitle: "Hi", date: DateTime.parse(selectedDate).toString()));
+                  monthTaskList.add(new Task(taskTitle: selectedTitle, description: "Hi", date: DateTime.parse(selectedDate).toString()));
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text(selectedDate),
                   ));
+                  print(monthTaskList.length);
                 }),
               ),
               Spacer(),

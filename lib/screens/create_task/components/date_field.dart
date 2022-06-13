@@ -4,7 +4,7 @@ import 'package:todo_list_app/models/Task.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 import 'pop_up_calendar.dart';
-import 'package:intl/intl.dart';
+
 
 class DateField extends StatefulWidget {
   DateField({
@@ -21,7 +21,7 @@ class DateField extends StatefulWidget {
 class _DateFieldState extends State<DateField> {
   String time = 'Anytime';
   AlertDialog dialog = AlertDialog();
-  Task task = Task(taskTitle: '', taskSubtitle: '');
+  Task task = Task(taskTitle: '');
   @override
   Widget build(BuildContext context) {
     PopUpCalendar popUpCalendar = PopUpCalendar(task: task);
@@ -59,9 +59,6 @@ class _DateFieldState extends State<DateField> {
                               setState(() {
                                time = task.date;
                                widget.onChanged(time);
-                               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                 content: Text(time),
-                               ));
                               });
                             }),
                           )

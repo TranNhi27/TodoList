@@ -6,7 +6,8 @@ import 'package:todo_list_app/models/Project.dart';
 import 'User.dart';
 
 class Task extends Project {
-  final String taskTitle, taskSubtitle;
+  final String taskTitle;
+  String hour;
   String date;
   bool value;
   String assignee, description, assigneeAva;
@@ -14,7 +15,7 @@ class Task extends Project {
 
   Task({
     required this.taskTitle,
-    required this.taskSubtitle,
+    this.hour = '',
     this.assignee = '',
     this.date = '',
     this.description = '',
@@ -42,7 +43,7 @@ class Task extends Project {
 List<Task> taskList = [
   Task(
       taskTitle: 'Go fishing with Stephen',
-      taskSubtitle: '9:00am',
+      hour: '9:00am',
       date: DateTime.now().toString(),
       assignee: users[2].name,
       assigneeAva: users[2].avatar,
@@ -52,7 +53,7 @@ List<Task> taskList = [
   ),
   Task(
       taskTitle: 'Meet according with design team at Central Park',
-      taskSubtitle: '9:00am',
+      hour: '9:00am',
       date: DateTime.now().toString(),
       assignee: users[1].name,
       assigneeAva: users[1].avatar,
@@ -62,7 +63,7 @@ List<Task> taskList = [
   ),
   Task(
       taskTitle: 'Sailing with Stephen',
-      taskSubtitle: '9:00am',
+      hour: '9:00am',
       date: DateTime.now().toString(),
       assignee: users[2].name,
       assigneeAva: users[2].avatar,
@@ -75,8 +76,8 @@ List<Task> taskList = [
 List<Task> monthTaskList = [
   Task(
       taskTitle: 'Go fishing with Irene',
-      taskSubtitle: '9:00am',
-      date: DateTime.now().toString(),
+      hour: '9:00am',
+      date: "2022-06-13",
       assignee: users[2].name,
       assigneeAva: users[2].avatar,
       description: 'Go fishing with Irene',
@@ -85,8 +86,8 @@ List<Task> monthTaskList = [
   ),
   Task(
       taskTitle: 'Play golf with Wendy',
-      taskSubtitle: '9:00am',
-      date: DateTime.now().toString(),
+      hour: '9:00am',
+      date: "2022-06-13",
       assignee: users[1].name,
       assigneeAva: users[1].avatar,
       description: 'Play golf with Wendy',
@@ -95,13 +96,43 @@ List<Task> monthTaskList = [
   ),
   Task(
       taskTitle: 'Get supply at Walmart',
-      taskSubtitle: '9:00am',
-      date: DateTime.now().toString(),
+      hour: '9:00am',
+      date: "2022-06-14",
       assignee: users[1].name,
       assigneeAva: users[1].avatar,
       description: 'Get supply at Walmart',
       projectTitle: projects[3].projectTitle,
       members: users2
+  ),
+  Task(
+      taskTitle: 'at Walmart',
+      hour: '9:00am',
+      date: "2022-06-14",
+      assignee: users[1].name,
+      assigneeAva: users[1].avatar,
+      description: 'Get supply at Walmart',
+      projectTitle: projects[3].projectTitle,
+      members: users2
+  ),
+  Task(
+      taskTitle: 'Get supply',
+      hour: '',
+      date: "2022-06-14",
+      assignee: users[1].name,
+      assigneeAva: users[1].avatar,
+      description: 'Get supply at Walmart',
+      projectTitle: projects[3].projectTitle,
+      members: users2
+  ),
+  Task(
+      taskTitle: 'Go fishing with Irene',
+      hour: '9:00am',
+      date: "2022-06-13",
+      assignee: users[2].name,
+      assigneeAva: users[2].avatar,
+      description: 'Go fishing with Irene',
+      projectTitle: projects[1].projectTitle,
+      members: users
   ),
 ];
 
@@ -112,23 +143,31 @@ List<Map<Project, List<Task>>> projectWithTask = [
 ];
 
 // Events for days
-final kTasks = LinkedHashMap<DateTime, List<Task>>(
+var kTasks = LinkedHashMap<DateTime, List<Task>>(
   equals: isSameDay,
   hashCode: getHashCode,
 )..addAll(_kTaskSource);
-
-final _kTaskSource = Map.fromIterable(List.generate(taskList.length, (index) => index),
-    key: (item) => DateTime.utc(kFirstDay.year, kFirstDay.month, item * 5),
+//DateTime.utc(kFirstDay.year, kFirstDay.month, item * 5)
+//item % 4 + 1
+//Task(taskTitle: monthTaskList[index].taskTitle, taskSubtitle: monthTaskList[index].taskSubtitle)
+var _kTaskSource = Map.fromIterable(List.generate(taskList.length, (index) => index),
+    key: (item) => DateTime.parse(monthTaskList[item].date),
     value: (item) => List.generate(
-        item % 4 + 1, (index) => Task(taskTitle: "Hi", taskSubtitle: "Eiii")))
+        monthTaskList.where((task) => monthTaskList[item].date == task.date).length,
+            (index) => monthTaskList.where((task) => monthTaskList[item].date == task.date).toList()[index]))
   ..addAll({
-    kToday: [
-      Task(taskTitle: "Hi", taskSubtitle: "Ho"),
-      Task(taskTitle: "Hi", taskSubtitle: "Ho"),
-      Task(taskTitle: "Hi", taskSubtitle: "Ho"),
-      Task(taskTitle: "Hi", taskSubtitle: "Ho"),
-    ],
+    kToday: taskList,
+
   });
+
+/// Returns a list of [DateTime] objects from [first] to [last], inclusive.
+List<DateTime> daysInRange(DateTime first, DateTime last) {
+  final dayCount = last.difference(first).inDays + 1;
+  return List.generate(
+    dayCount,
+        (index) => DateTime.utc(first.year, first.month, first.day + index),
+  );
+}
 
 int getHashCode(DateTime key) {
   return key.day * 1000000 + key.month * 10000 + key.year;

@@ -3,8 +3,8 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:todo_list_app/models/Task.dart';
 import 'package:todo_list_app/screens/view_task/view_task_screen.dart';
-import '../../../constants.dart';
-import '../../../size_config.dart';
+import '../constants.dart';
+import '../size_config.dart';
 
 class TaskList extends StatefulWidget {
   const TaskList({
@@ -86,6 +86,9 @@ class _TaskListState extends State<TaskList> {
       ],
     );
   }
+
+
+
   CheckboxListTile buildSingleTask(Task task, BuildContext context) {
     return CheckboxListTile(
       value: task.value,
@@ -95,7 +98,7 @@ class _TaskListState extends State<TaskList> {
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
         style: TextStyle(decoration: task.value ? TextDecoration.lineThrough : TextDecoration.none),),
-      subtitle: Text(task.taskSubtitle, style: TextStyle(decoration: task.value ? TextDecoration.lineThrough : TextDecoration.none),),
+      subtitle: Text(task.hour, style: TextStyle(decoration: task.value ? TextDecoration.lineThrough : TextDecoration.none),),
       contentPadding: EdgeInsets.only(
           left: 25,
           right: 0),

@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:todo_list_app/models/Task.dart';
 import '../../../size_config.dart';
 import 'day_detail_text.dart';
-import 'task_list.dart';
+import '../../../components/task_list.dart';
 
 
 class TodayTabView extends StatelessWidget {
