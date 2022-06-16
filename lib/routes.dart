@@ -13,6 +13,8 @@ import 'package:todo_list_app/screens/work_list/work_list_screen.dart';
 import 'package:todo_list_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:todo_list_app/screens/reset_password/reset_password_screen.dart';
 import 'package:todo_list_app/screens/changed_pass_successfully/success_screen.dart';
+import 'package:todo_list_app/screens/add_check_list/add_check_list_screen.dart';
+import 'package:todo_list_app/screens/add_note/add_note_screen.dart';
 
 final Map<String, WidgetBuilder> routes = {
   LogoScreen.routeName: (context) => LogoScreen(),
@@ -29,4 +31,6 @@ final Map<String, WidgetBuilder> routes = {
   ForgotPasswordScreen.routeName: (context) => ForgotPasswordScreen(),
   ResetPasswordScreen.routeName: (context) => ResetPasswordScreen(),  
   SuccessScreen.routeName: (context) => SuccessScreen(),
+  AddNoteScreen.routeName: (context) => AddNoteScreen(),
+- AddCheckListScreen.routeName: (context) => AddCheckListScreen(),
 };
