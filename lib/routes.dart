@@ -32,5 +32,5 @@ final Map<String, WidgetBuilder> routes = {
   ResetPasswordScreen.routeName: (context) => ResetPasswordScreen(),  
   SuccessScreen.routeName: (context) => SuccessScreen(),
   AddNoteScreen.routeName: (context) => AddNoteScreen(),
-- AddCheckListScreen.routeName: (context) => AddCheckListScreen(),
+  AddCheckListScreen.routeName: (context) => AddCheckListScreen(),
 };
