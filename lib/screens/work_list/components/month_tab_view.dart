@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:todo_list_app/components/task_list.dart';
+import 'package:todo_list_app/database/Task_db.dart';
 import 'package:todo_list_app/models/Task.dart';
 import 'package:todo_list_app/size_config.dart';
 
@@ -15,30 +16,42 @@ class MonthTabView extends StatefulWidget {
 
 class _MonthTabViewState extends State<MonthTabView> {
   late ValueNotifier<List<Task>> _selectedTasks;
+  bool isLoading = false;
+  late List<Task> tasks;
   CalendarFormat _calendar = CalendarFormat.week;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
   DateTime? _rangeStart;
   DateTime? _rangeEnd;
+  List<Task>? list;
   RangeSelectionMode _rangeSelectionMode = RangeSelectionMode
       .toggledOff; // Can be toggled on/off by longpressing a date
-
+  //
   // Future<List<Task>?> _getDays(DateTime day) async {
+  //   Future.delayed(const Duration(seconds: 2), () => kTasks[day] ?? []);
+  //   print(kTasks[_focusedDay]);
   //   return kTasks[day];
+  //
   // }
-  List<Task> _getTasksForDay(DateTime day) {
-    // Implementation example
+
+  // Future<List<Task>> getList() async {
+  //   await kTasks;
+  // }
+  List<Task> _getTasksForDay(DateTime day)  {
     return kTasks[day] ?? [];
   }
-  // @override
+
+
+  //
   // List<Task> _getTasksForDay(DateTime day) {
-  //   List<Task> _listTasks= [];
-  //   kTasks[day]?.getAll().then((value) {
-  //     if (value != null) value.forEach((item) => _listTasks.add(item));
+  //   List<Task>? _listTask;
+  //   _getDays(day).then((value) {
+  //     if (value != null) value.forEach((item) => _listTask!.add(item));
   //   });
-  //   return _listTasks == null ? [] : _listTasks;
+  //   return _listTask == null ? [] : _listTask;
   // }
-  // List<Task> _getTasksForDay(DateTime day)
+
+
 
   List<Task> _getTasksForRange(DateTime start, DateTime end) {
     // Implementation example
@@ -53,8 +66,18 @@ class _MonthTabViewState extends State<MonthTabView> {
   void initState() {
     super.initState();
 
+    refreshTasks();
     _selectedDay = _focusedDay;
     _selectedTasks = ValueNotifier(_getTasksForDay(_selectedDay!));
+
+  }
+
+  Future refreshTasks() async {
+    setState(() => isLoading = true);
+
+    this.tasks = await TaskDatabase.instance.readAllTask();
+
+    setState(() => isLoading = false);
   }
 
   void _onRangeSelected(DateTime? start, DateTime? end, DateTime focusedDay) {

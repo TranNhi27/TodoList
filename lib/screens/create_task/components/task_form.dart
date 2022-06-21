@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_app/components/default_text_button.dart';
 import 'package:todo_list_app/constants.dart';
+import 'package:todo_list_app/database/Task_db.dart';
 import 'package:todo_list_app/screens/create_task/components/add_member_form.dart';
+import 'package:todo_list_app/screens/work_list/work_list_screen.dart';
 import '../../../size_config.dart';
 import 'date_field.dart';
 import 'description_field.dart';
@@ -70,11 +72,15 @@ class TaskForm extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: k24Padding),
                 child: DefaultTextButton(text: 'Add Task', press: () {
-                  monthTaskList.add(new Task(taskTitle: selectedTitle, description: "Hi", date: DateTime.parse(selectedDate).toString()));
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text(selectedDate),
-                  ));
-                  print(monthTaskList.length);
+                  addTask(selectedTitle, null, DateTime.parse(selectedDate).toString(), null);
+                  print(TaskDatabase.instance.taskLength());
+                  print(selectedTitle);
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => WorklistScreen(),
+                    ),
+                  );
                 }),
               ),
               Spacer(),
@@ -82,6 +88,18 @@ class TaskForm extends StatelessWidget {
           )),
     );
   }
+
+  Future addTask(String taskTitle, String? des, String date, String? hour) async {
+    final task = Task(
+      taskTitle: taskTitle,
+      value: false,
+      date: date,
+      description: des == null ? '' : des,
+      hour: hour == null ? '' : hour
+    );
+
+    await TaskDatabase.instance.create(task);
+}
   Row buildTitleAndFillingForm(
       {required String title, required String hintText}) {
     return Row(

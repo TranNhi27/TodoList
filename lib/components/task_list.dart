@@ -19,7 +19,7 @@ class TaskList extends StatefulWidget {
 }
 
 class _TaskListState extends State<TaskList> {
-  List<Task> tasks = [];
+  late List<Task> tasks;
   @override
   void initState() {
     // TODO: implement initState
