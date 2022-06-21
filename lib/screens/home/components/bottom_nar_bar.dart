@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_dialog/flutter_custom_dialog.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-// import 'package:todo_list_app/screens/add_check_list/add_check_list_screen.dart';
-// import 'package:todo_list_app/screens/add_note/add_note_screen.dart';
+import 'package:todo_list_app/screens/add_check_list/add_check_list_screen.dart';
+import 'package:todo_list_app/screens/add_note/add_note_screen.dart';
 import 'package:todo_list_app/screens/create_task/create_task_screen.dart';
 import 'package:todo_list_app/screens/menu/menu_screen.dart';
 import 'package:todo_list_app/screens/profile/profile_screen.dart';
@@ -106,18 +106,18 @@ class _CustomBotNavBarState extends State<CustomBotNavBar> {
                     padding: EdgeInsets.all(0),
                     child: const ChoiceButton(choiceText: 'Add Quick Note'),
                     onPressed: () {
-                    //   pushNewScreen(
-                    //       cont!, screen: AddNoteScreen(), withNavBar: true);
-                    //   Navigator.pop(context, true);
+                      pushNewScreen(
+                          cont!, screen: AddNoteScreen(), withNavBar: true);
+                      Navigator.pop(context, true);
                     },
                   ),
                   SimpleDialogOption(
                     padding: EdgeInsets.all(0),
                     child: const ChoiceButton(choiceText: 'Add Check List'),
                     onPressed: () {
-                      // pushNewScreen(
-                      //     cont!, screen: AddCheckListScreen(), withNavBar: true);
-                      // Navigator.pop(context, true);
+                      pushNewScreen(
+                          cont!, screen: AddCheckListScreen(), withNavBar: true);
+                      Navigator.pop(context, true);
                     },
                   )
                 ],);
