@@ -64,6 +64,7 @@ class _CustomBotNavBarState extends State<CustomBotNavBar> {
 
 
   List<PersistentBottomNavBarItem> _navBarsItems(BuildContext context) {
+    // simple dialog may cause the probs
     SimpleDialog dialog = SimpleDialog();
     return [
       PersistentBottomNavBarItem(
