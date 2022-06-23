@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:todo_list_app/models/Task.dart';
@@ -89,12 +90,19 @@ CREATE TABLE $tableTasks (
 
   Future<List<Task>> readTodayTask() async {
     final db = await instance.database;
-    String today = DateTime.now().toString();
-    final whereDate = '${TaskFields.date} = $today';
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('yyyy-MM-dd').format(now);
 
+    // final result = await db.rawQuery(' SELECT * FROM tableTasks WHERE date LIKE "%$formattedDate%" ');
+    //     SET age = newAge WHERE """ )(
+    //     tableTasks,
+    //     where: whereDate
+    // );
     final result = await db.query(
         tableTasks,
-        where: whereDate
+        columns: TaskFields.values,
+        where: "${TaskFields.date} LIKE ?",
+        whereArgs: ['%$formattedDate%']
     );
 
     return result.map((json) => Task.fromJson(json)).toList();

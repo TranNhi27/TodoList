@@ -18,7 +18,7 @@ class TitleField extends StatefulWidget {
 class _TitleFieldState extends State<TitleField> {
   @override
   Widget build(BuildContext context) {
-    String _title;
+    // String _title;
     // GlobalKey key = GlobalKey();
     // RenderBox box = key.currentContext!.findRenderObject() as RenderBox;
     // Offset position = box.localToGlobal(Offset.zero); //this is global position
@@ -36,7 +36,7 @@ class _TitleFieldState extends State<TitleField> {
           Expanded(
             child: TextFormField(
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-              onFieldSubmitted: (String title) => {
+              onChanged: (String title) => {
                setState(() {
               widget.onChanged(title);
                            })

@@ -28,7 +28,7 @@ class _TodayTabViewState extends State<TodayTabView> {
   Future refreshTasks() async {
     setState(() => isLoading = true);
 
-    this.tasks = await TaskDatabase.instance.readAllTask();
+    this.tasks = await TaskDatabase.instance.readTodayTask();
 
     setState(() => isLoading = false);
   }

@@ -21,6 +21,7 @@ class TaskForm extends StatelessWidget {
   Widget build(BuildContext context) {
     String selectedTitle = "";
     String selectedDate = "";
+    String selectedDes = "";
     return SingleChildScrollView(
       child: Container(
           margin: EdgeInsets.symmetric(
@@ -53,7 +54,9 @@ class TaskForm extends StatelessWidget {
               TitleField(onChanged: (title) {
                 selectedTitle = title;
               },),
-              DescriptionField(),
+              DescriptionField(onChanged: (des) {
+                selectedDes = des;
+              }),
               DateField(onChanged: (time) {
                 selectedDate = time;
               },),
@@ -72,7 +75,7 @@ class TaskForm extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: k24Padding),
                 child: DefaultTextButton(text: 'Add Task', press: () {
-                  addTask(selectedTitle, null, DateTime.parse(selectedDate).toString(), null);
+                  addTask(selectedTitle, selectedDes, DateTime.parse(selectedDate).toString(), null);
                   print(TaskDatabase.instance.taskLength());
                   print(selectedTitle);
                   Navigator.pushReplacement(

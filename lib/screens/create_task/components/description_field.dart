@@ -3,39 +3,55 @@ import 'package:flutter_svg/svg.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
-class DescriptionField extends StatelessWidget {
-  const DescriptionField({
+class DescriptionField extends StatefulWidget {
+  DescriptionField({
     Key? key,
+    required this.onChanged,
   }) : super(key: key);
+  ValueChanged<String> onChanged;
 
+  @override
+  State<DescriptionField> createState() => _DescriptionFieldState();
+}
+
+class _DescriptionFieldState extends State<DescriptionField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: k16Padding, horizontal: k24Padding),
+      padding:
+          EdgeInsets.symmetric(vertical: k16Padding, horizontal: k24Padding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Description', style: TextStyle(color: kDayColor, fontSize: 16),),
-          SizedBox(height: getProportionateScreenHeight(12),),
+          Text(
+            'Description',
+            style: TextStyle(color: kDayColor, fontSize: 16),
+          ),
+          SizedBox(
+            height: getProportionateScreenHeight(12),
+          ),
           Container(
             height: getProportionateScreenHeight(120),
-            decoration: BoxDecoration(
-                border: Border.all(color: kDayColor)
-            ),
+            decoration: BoxDecoration(border: Border.all(color: kDayColor)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   child: Container(
                     child: TextFormField(
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                       decoration: InputDecoration(
-                        border: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                        enabledBorder: InputBorder.none,
-                        errorBorder: InputBorder.none,
-                        disabledBorder: InputBorder.none,
-                      ),
+                          border: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          disabledBorder: InputBorder.none),
+                      onChanged: (String title) => {
+                        setState(() {
+                          widget.onChanged(title);
+                        })
+                      },
                     ),
                   ),
                 ),
@@ -47,7 +63,8 @@ class DescriptionField extends StatelessWidget {
                   child: Row(
                     children: [
                       IconButton(
-                          onPressed: () {}, icon: SvgPicture.asset('assets/icons/attach.svg')),
+                          onPressed: () {},
+                          icon: SvgPicture.asset('assets/icons/attach.svg')),
                       Expanded(
                         child: Container(
                           child: Text(''),
