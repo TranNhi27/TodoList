@@ -93,11 +93,6 @@ CREATE TABLE $tableTasks (
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('yyyy-MM-dd').format(now);
 
-    // final result = await db.rawQuery(' SELECT * FROM tableTasks WHERE date LIKE "%$formattedDate%" ');
-    //     SET age = newAge WHERE """ )(
-    //     tableTasks,
-    //     where: whereDate
-    // );
     final result = await db.query(
         tableTasks,
         columns: TaskFields.values,

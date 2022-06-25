@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_app/models/Task.dart';
+import 'package:todo_list_app/models/User.dart';
 import '../../../constants.dart';
 import 'config_title_with_list_tile.dart';
 
@@ -13,10 +14,10 @@ class AssignToWhomBox extends StatelessWidget {
     return ConfigTitleWithListTile(
         title: 'Assigned to',
         leading: CircleAvatar(
-          backgroundImage: AssetImage(task.assigneeAva),
+          backgroundImage: AssetImage(users[0].avatar),
         ),
         subChild: Text(
-          task.assignee,
+          users[0].name,
           style: bold16Text,
         ));
   }

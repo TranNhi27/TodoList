@@ -45,7 +45,7 @@ class _ViewTaskDetailState extends State<ViewTaskDetail> {
               DueDateBox(dateTime: task.date,),
               DescriptionBox(description: task.description,),
               MembersBox(group: (task.members != null ? task.members : blankMember) as List<User>,),
-              TagBox(tag: task.projectTitle,),
+              TagBox(tag: "TODO",),
               CommentArea(isShowed: isShowed),
               DefaultTextButton(
                 text: 'Complete Task',

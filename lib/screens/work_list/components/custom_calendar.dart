@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:todo_list_app/models/Task.dart';
+// import 'package:todo_list_app/models/Task.dart';
 
 class CustomCalendar extends StatefulWidget {
   const CustomCalendar({Key? key}) : super(key: key);
@@ -10,22 +10,22 @@ class CustomCalendar extends StatefulWidget {
 }
 
 class _CustomCalendarState extends State<CustomCalendar> {
-  late final ValueNotifier<List<Task>> _selectedTasks;
+  // late final ValueNotifier<List<Task>> _selectedTasks;
   CalendarFormat _calendar = CalendarFormat.week;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
 
-  List<Task> _getTasksForDay(DateTime day) {
-    // Implementation example
-    return kTasks[day] ?? [];
-  }
+  // List<Task> _getTasksForDay(DateTime day) {
+  //   // Implementation example
+  //   return kTasks[day] ?? [];
+  // }
 
   @override
   void initState() {
     super.initState();
 
     _selectedDay = _focusedDay;
-    _selectedTasks = ValueNotifier(_getTasksForDay(_selectedDay!));
+    // _selectedTasks = ValueNotifier(_getTasksForDay(_selectedDay!));
   }
 
 
@@ -44,7 +44,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
         setState(() {
           _selectedDay = selectedDay;
           _focusedDay = focusedDay;
-          _selectedTasks.value = _getTasksForDay(selectedDay);// update `_focusedDay` here as well
+          // _selectedTasks.value = _getTasksForDay(selectedDay);// update `_focusedDay` here as well
         });
       },
       availableCalendarFormats: const {
@@ -59,7 +59,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
             _calendar = CalendarFormat.month;
         });
       },
-      eventLoader: _getTasksForDay,
+      // eventLoader: _getTasksForDay,
       onFormatChanged: (format) {
         if (_calendar != format) {
           setState(() {

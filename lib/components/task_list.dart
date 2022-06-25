@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:todo_list_app/database/Task_db.dart';
 import 'package:todo_list_app/models/Task.dart';
 import 'package:todo_list_app/screens/view_task/view_task_screen.dart';
 import '../constants.dart';
@@ -20,14 +21,18 @@ class TaskList extends StatefulWidget {
 
 class _TaskListState extends State<TaskList> {
   late List<Task> tasks;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     tasks = widget.taskList;
+
   }
+
   @override
   Widget build(BuildContext context) {
+    int id;
     return Column(
       children: [
         ListView.builder(
@@ -52,7 +57,9 @@ class _TaskListState extends State<TaskList> {
                         iconWidget: Icon(Icons.delete, color: kPrimaryColor,),
                         onTap: () => setState(() {
                           widget.taskList.removeAt(index);
-
+                          id =  widget.taskList[index].id!;
+                          print(id);
+                          deleteTask(id);
                         })
                       ),
                       decoration: BoxDecoration(
@@ -116,6 +123,10 @@ class _TaskListState extends State<TaskList> {
       },
 
     );
-  }
 
+  }
+  Future deleteTask(int index) async {
+    await TaskDatabase.instance.delete(index);
+
+  }
 }
