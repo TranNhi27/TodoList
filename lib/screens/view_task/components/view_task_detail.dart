@@ -42,7 +42,7 @@ class _ViewTaskDetailState extends State<ViewTaskDetail> {
               buildTaskTitle(
                   title: task.taskTitle),
               AssignToWhomBox(task: task,),
-              DueDateBox(dateTime: task.date,),
+              DueDateBox(dateTime: task.date, time: task.hour,),
               DescriptionBox(description: task.description,),
               MembersBox(group: (task.members != null ? task.members : blankMember) as List<User>,),
               TagBox(tag: "TODO",),

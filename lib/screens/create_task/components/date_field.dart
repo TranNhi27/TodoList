@@ -9,11 +9,12 @@ import 'pop_up_calendar.dart';
 class DateField extends StatefulWidget {
   DateField({
     Key? key,
-    required this.onChanged
+    required this.onChangedDate,
+    required this.onChangedTime
   }) : super(key: key);
 
-  ValueChanged<String> onChanged;
-
+  ValueChanged<String> onChangedDate;
+  ValueChanged<String> onChangedTime;
   @override
   State<DateField> createState() => _DateFieldState();
 }
@@ -22,9 +23,25 @@ class _DateFieldState extends State<DateField> {
   String time = 'Anytime';
   AlertDialog dialog = AlertDialog();
   Task task = Task(taskTitle: '');
+  TimeOfDay _time = TimeOfDay.now();
+
+  void _selectTime() async {
+    final TimeOfDay? newTime = await showTimePicker(
+      context: context,
+      initialTime: _time,
+    );
+    if (newTime != null) {
+      setState(() {
+        _time = newTime;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     PopUpCalendar popUpCalendar = PopUpCalendar(task: task);
+    final localizations = MaterialLocalizations.of(context);
+    final formattedTimeOfDay = localizations.formatTimeOfDay(_time);
     return Container(
       height: getProportionateScreenHeight(66),
       color: kGrayColor,
@@ -33,6 +50,7 @@ class _DateFieldState extends State<DateField> {
       child: Row(
         children: [
           Text('Due Date',style: TextStyle(fontSize: 18),),
+          Spacer(),
           SizedBox(width: 10,),
           InkWell(
             child: Container(
@@ -58,7 +76,8 @@ class _DateFieldState extends State<DateField> {
                               Navigator.pop(context, popUpCalendar.task.date);
                               setState(() {
                                time = task.date;
-                               widget.onChanged(time);
+                               widget.onChangedDate(time);
+                               widget.onChangedTime(formattedTimeOfDay);
                               });
                             }),
                           )
@@ -67,6 +86,15 @@ class _DateFieldState extends State<DateField> {
                 );
               });
             },
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: IconButton(onPressed: () {
+              _selectTime();
+            },
+                icon: Icon(
+                  Icons.watch_later_sharp
+                )),
           ),
         ],
       ),
