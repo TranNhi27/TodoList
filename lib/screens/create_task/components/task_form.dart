@@ -122,7 +122,10 @@ class _TaskFormState extends State<TaskForm> {
         title: taskTitle,
         body: des,
         payload: "blank",
-        scheduleDate: DateTime.now().add(Duration(seconds: 10)));
+        scheduleDate: DateTime.parse(date).
+        add(Duration(hours: int.parse(hour == null ? '' : hour.substring(0, 2)),
+          minutes: int.parse(hour == null ? '' : hour.substring(3, 5))
+        )));
 }
 //DateTime.parse(date + (hour == null ? '' : hour)))
   //DateTime.now().add(Duration(seconds: 10))
