@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list_app/models/Task.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
@@ -16,12 +15,7 @@ class FillingForm extends StatefulWidget {
 
 class _FillingFormState extends State<FillingForm> {
   final _formKey = GlobalKey<FormState>();
-  List<Task> taskList = [
-    Task(taskTitle: 'Go fishing with Stephen', date: '9:00am'),
-    Task(
-        taskTitle: 'Meet according with design team..', date: '9:00am'),
-    Task(taskTitle: 'Go fishing with Stephen', date: '9:00am'),
-  ];
+
 
   @override
   Widget build(BuildContext context) {

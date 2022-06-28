@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_app/components/default_text_button.dart';
 import 'package:todo_list_app/components/title_with_detail.dart';
-// import 'package:todo_list_app/screens/forgot_password/forgot_password_screen.dart';
+import 'package:todo_list_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:todo_list_app/screens/home/home_screen.dart';
 import 'package:todo_list_app/screens/sign_in/components/sign_in_form.dart';
 import 'package:todo_list_app/size_config.dart';
@@ -29,7 +29,7 @@ class Body extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: GestureDetector(
                 onTap: () {
-                  // Navigator.pushNamed(context, ForgotPasswordScreen.routeName);
+                  Navigator.pushNamed(context, ForgotPasswordScreen.routeName);
                 },
                 child: Text(
                   'Forget Password',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list_app/api/notification_api.dart';
 import 'package:todo_list_app/components/default_text_button.dart';
 import 'package:todo_list_app/constants.dart';
 import 'package:todo_list_app/database/Task_db.dart';
@@ -12,10 +13,21 @@ import 'search_form.dart';
 import 'title_field.dart';
 import 'package:todo_list_app/models/Task.dart';
 
-class TaskForm extends StatelessWidget {
+class TaskForm extends StatefulWidget {
   const TaskForm({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<TaskForm> createState() => _TaskFormState();
+}
+
+class _TaskFormState extends State<TaskForm> {
+
+  @override
+  void initState() {
+    NotificationApi.init();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,8 +92,6 @@ class TaskForm extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: k24Padding),
                 child: DefaultTextButton(text: 'Add Task', press: () {
                   addTask(selectedTitle, selectedDes, DateTime.parse(selectedDate).toString(), selectedTime);
-                  print(TaskDatabase.instance.taskLength());
-                  print(selectedTime);
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
@@ -106,7 +116,16 @@ class TaskForm extends StatelessWidget {
     );
 
     await TaskDatabase.instance.create(task);
+
+
+    NotificationApi.showScheduledNotification(
+        title: taskTitle,
+        body: des,
+        payload: "blank",
+        scheduleDate: DateTime.now().add(Duration(seconds: 10)));
 }
+//DateTime.parse(date + (hour == null ? '' : hour)))
+  //DateTime.now().add(Duration(seconds: 10))
   Row buildTitleAndFillingForm(
       {required String title, required String hintText}) {
     return Row(

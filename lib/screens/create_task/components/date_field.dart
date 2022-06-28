@@ -41,7 +41,7 @@ class _DateFieldState extends State<DateField> {
   Widget build(BuildContext context) {
     PopUpCalendar popUpCalendar = PopUpCalendar(task: task);
     final localizations = MaterialLocalizations.of(context);
-    final formattedTimeOfDay = localizations.formatTimeOfDay(_time);
+
     return Container(
       height: getProportionateScreenHeight(66),
       color: kGrayColor,
@@ -77,6 +77,8 @@ class _DateFieldState extends State<DateField> {
                               setState(() {
                                time = task.date;
                                widget.onChangedDate(time);
+                               final formattedTimeOfDay = localizations.formatTimeOfDay(_time);
+                               print(_time);
                                widget.onChangedTime(formattedTimeOfDay);
                               });
                             }),
