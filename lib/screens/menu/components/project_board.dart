@@ -32,7 +32,7 @@ class _ProjectBoardState extends State<ProjectBoard> {
                 mainAxisSpacing: getProportionateScreenHeight(24)),
             itemBuilder: (context, index) => ProjectCard(
               projectTitle: projects[index].projectTitle,
-              totalTask: projects[index].totalTask,
+              totalTask: 10,
               color: Colors.red,
             ),
             itemCount: projects.length,
@@ -47,7 +47,8 @@ class _ProjectBoardState extends State<ProjectBoard> {
   }
 
   YYDialog AddProjectDialog() {
-    return YYDialog().build()
+    var yyDialog = YYDialog();
+    return yyDialog.build()
       ..width = getProportionateScreenWidth(327)
       ..borderRadius = 5
       ..widget(Padding(
@@ -69,12 +70,10 @@ class _ProjectBoardState extends State<ProjectBoard> {
             ),
             ChooseColorBox(),
             DefaultTextButton(text: 'Create Project', press: () {
-                setState(() => projects.add(
-                  Project(
-                      projectTitle: myController.text,
-                      totalTask: 0,
-                  )
-                ));
+                setState(()  {
+                  projects.add(Project(projectTitle: myController.text));
+                  yyDialog.dismiss();
+                });
             }
             )
           ],

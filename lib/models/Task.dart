@@ -40,7 +40,7 @@ class Task extends Project {
     projectTitle = '',
     totalTask = 1,
     color = kPrimaryColor
-  }) : super(projectTitle: projectTitle, totalTask: totalTask);
+  }) : super(projectTitle: projectTitle);
 
   Task copy({
     int? id,

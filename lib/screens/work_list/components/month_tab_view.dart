@@ -24,6 +24,7 @@ class _MonthTabViewState extends State<MonthTabView> {
   DateTime? _rangeStart;
   DateTime? _rangeEnd;
   List<Task> tasks = [];
+  List<Task> todayTask = [];
 
   RangeSelectionMode _rangeSelectionMode = RangeSelectionMode
       .toggledOff; // Can be toggled on/off by longpressing a date
@@ -59,30 +60,25 @@ class _MonthTabViewState extends State<MonthTabView> {
           key: (item) => DateTime.parse(tasks[item].date),
           value: (item) => List.generate(
               tasks.where((task) => tasks[item].date == task.date).length,
-                  (index) => tasks.where((task) => tasks[item].date == task.date).toList()[index]));
+                  (index) => tasks.where((task) => tasks[item].date == task.date).toList()[index]))
+        ..addAll({
+          kToday: todayTask,
+        });
       kTasks.addAll(_kTaskSource);
       print(tasks.length);
       print(MediaQuery.of(context).size.height);
     }));
     _selectedDay = _focusedDay;
+    isLoading = true;
     _selectedTasks = ValueNotifier(_getTasksForDay(_selectedDay!));
-    setState(() {});
-    // _kTaskSource.addAll(tasks);
-  }
-  Future<bool> fetchResults() async {
 
-    if (tasks.length != 0) {
-      return true;
-    }
-    return false;
   }
+
 
   Future refreshTasks() async {
-    setState(() => isLoading = true);
-
     tasks = await TaskDatabase.instance.readAllTask();
-    final result = await fetchResults();
-    setState(() => isLoading = false);
+    todayTask = await TaskDatabase.instance.readTodayTask();
+
   }
 
   void _onRangeSelected(DateTime? start, DateTime? end, DateTime focusedDay) {
@@ -106,9 +102,10 @@ class _MonthTabViewState extends State<MonthTabView> {
 
   @override
   Widget build(BuildContext context) {
-    // final formattedDate = DateFormat.yMMMMd('en_US');
-    // final now = DateTime.now();
-    return SizedBox(
+    return isLoading == false ?
+    Center(
+      child: CircularProgressIndicator(), // Show indicator
+    ) : SizedBox(
       // width: double.infinity,
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
@@ -169,18 +166,14 @@ class _MonthTabViewState extends State<MonthTabView> {
                               ? AssetImage('assets/icons/up.png')
                               : AssetImage('assets/icons/down.png')))),
             ),
-            Flexible(
-              fit: FlexFit.loose,
+            Expanded(
               child: SingleChildScrollView(
                 // physics: NeverScrollableScrollPhysics(),
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
-                  child: ValueListenableBuilder<List<Task>>(
-                    valueListenable: _selectedTasks,
-                    builder: (context, value, _) {
-                      return TaskList(taskList: value);
-                    },
-                  ),
+                child: ValueListenableBuilder<List<Task>>(
+                  valueListenable: _selectedTasks,
+                  builder: (context, value, _) {
+                    return TaskList(taskList: value);
+                  },
                 ),
               ),
             ),
