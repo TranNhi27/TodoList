@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list_app/screens/view_project/view_project.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
@@ -16,36 +17,42 @@ class ProjectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-          horizontal: getProportionateScreenWidth(24),
-          vertical: getProportionateScreenWidth(24)),
-      height: getProportionateScreenHeight(180),
-      width: getProportionateScreenWidth(165),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(5),
-          boxShadow: [
-            BoxShadow(
-                offset: Offset(0, 2),
-                blurRadius: 10,
-                color: Color.fromRGBO(227, 227, 227, 0.5))
-          ]),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          buildColorDot(color: color),
-          Spacer(flex: 3,),
-          Text(
-            projectTitle,
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          Spacer(flex: 1,),
-          Text(
-            '$totalTask Tasks',
-            style: TextStyle(color: kTextColor.withOpacity(0.8)),
-          )
-        ],
+    return InkWell(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ViewProjectScreen()),
+      ),
+      child: Container(
+        padding: EdgeInsets.symmetric(
+            horizontal: getProportionateScreenWidth(24),
+            vertical: getProportionateScreenWidth(24)),
+        height: getProportionateScreenHeight(180),
+        width: getProportionateScreenWidth(165),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(5),
+            boxShadow: [
+              BoxShadow(
+                  offset: Offset(0, 2),
+                  blurRadius: 10,
+                  color: Color.fromRGBO(227, 227, 227, 0.5))
+            ]),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            buildColorDot(color: color),
+            Spacer(flex: 3,),
+            Text(
+              projectTitle,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Spacer(flex: 1,),
+            Text(
+              '$totalTask Tasks',
+              style: TextStyle(color: kTextColor.withOpacity(0.8)),
+            )
+          ],
+        ),
       ),
     );
   }
