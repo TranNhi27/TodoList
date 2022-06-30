@@ -7,6 +7,7 @@ import 'package:todo_list_app/screens/menu/menu_screen.dart';
 import 'package:todo_list_app/screens/profile/profile_screen.dart';
 import 'package:todo_list_app/screens/quick/quick_screen.dart';
 import 'package:todo_list_app/screens/sign_in/sign_in_screen.dart';
+import 'package:todo_list_app/screens/update_task/update_task.dart';
 import 'package:todo_list_app/screens/view_task/view_task_screen.dart';
 import 'package:todo_list_app/screens/walkthrough/walkthrough_screen.dart';
 import 'package:todo_list_app/screens/work_list/work_list_screen.dart';
@@ -33,4 +34,5 @@ final Map<String, WidgetBuilder> routes = {
   SuccessScreen.routeName: (context) => SuccessScreen(),
   AddNoteScreen.routeName: (context) => AddNoteScreen(),
   AddCheckListScreen.routeName: (context) => AddCheckListScreen(),
+  UpdateTaskScreen.routeName: (context) => UpdateTaskScreen()
 };

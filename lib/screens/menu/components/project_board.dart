@@ -3,7 +3,6 @@ import 'package:flutter_custom_dialog/flutter_custom_dialog.dart';
 import 'package:todo_list_app/components/choose_color_box.dart';
 import 'package:todo_list_app/components/default_text_button.dart';
 import 'package:todo_list_app/models/Project.dart';
-import '../../../constants.dart';
 import '../../../size_config.dart';
 import 'add_box.dart';
 import 'project_card.dart';
@@ -34,7 +33,7 @@ class _ProjectBoardState extends State<ProjectBoard> {
             itemBuilder: (context, index) => ProjectCard(
               projectTitle: projects[index].projectTitle,
               totalTask: projects[index].totalTask,
-              color: projects[index].color,
+              color: Colors.red,
             ),
             itemCount: projects.length,
             shrinkWrap: true,
@@ -74,7 +73,6 @@ class _ProjectBoardState extends State<ProjectBoard> {
                   Project(
                       projectTitle: myController.text,
                       totalTask: 0,
-                      color: kSecondaryColor
                   )
                 ));
             }

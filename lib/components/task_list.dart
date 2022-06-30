@@ -3,6 +3,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:todo_list_app/database/Task_db.dart';
 import 'package:todo_list_app/models/Task.dart';
+import 'package:todo_list_app/screens/update_task/update_task.dart';
 import 'package:todo_list_app/screens/view_task/view_task_screen.dart';
 import '../constants.dart';
 import '../size_config.dart';
@@ -48,8 +49,8 @@ class _TaskListState extends State<TaskList> {
                   secondaryActions: [
                     IconSlideAction(
                       iconWidget: Icon(Icons.edit, color: kPrimaryColor,),
-                      onTap: () => Navigator.push(context, new MaterialPageRoute(
-                          builder: (context) => ViewTaskScreen())
+                      onTap: () => pushNewScreenWithRouteSettings(context,
+                          screen: UpdateTaskScreen(), withNavBar: false,settings: RouteSettings(arguments: widget.taskList[index])
                       )
                     ),
                     Container(

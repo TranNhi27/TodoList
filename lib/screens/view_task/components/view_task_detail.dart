@@ -24,12 +24,39 @@ class ViewTaskDetail extends StatefulWidget {
 
 class _ViewTaskDetailState extends State<ViewTaskDetail> {
   bool isShowed = false;
+  bool _isLoaded = false;
+  late Task thisTask;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Future.delayed(Duration.zero, () {
+      this.getData();
+    });
 
+  }
+  getData() async {
+    try {
+      final task = ModalRoute.of(context)!.settings.arguments as Task?;
+      setState(() {
+        _isLoaded = true;
+        if (task != null)
+        thisTask = task;// when data is loaded update state
+      });
+    }
+    catch (ex) {
+      print(ex);
+    }
+  }
   @override
   Widget build(BuildContext context) {
     Task task = ModalRoute.of(context)!.settings.arguments as Task;
+
     List<User> blankMember = [];
-    return BaseContainer(
+    return _isLoaded == false ?
+    Center(
+      child: CircularProgressIndicator(), // Show indicator
+    ) : BaseContainer(
         height: SizeConfig.screenHeight!,
         verticalPadding: k16Padding,
         child: SingleChildScrollView(

@@ -1,24 +1,32 @@
-import 'package:flutter/material.dart';
-import '../constants.dart';
 
 
+class ProjectFields {
+  static final List<String> values = [
+    projectId, projectTitle
+  ];
+  static final String projectId = '_id';
+  static final String projectTitle = 'projectTitle';
+  static final String hour = 'totalTask';
+// static final String id = '_id';
+
+}
 class Project  {
+  final int? projectId;
   final String projectTitle;
   final int totalTask;
-  final Color color;
 
   Project(
       {
+        this.projectId,
         required this.projectTitle,
         required this.totalTask,
-        required this.color,
         });
 
 }
 
 List<Project> projects = [
-  Project(projectTitle: 'Project', totalTask: 10, color: kSecondaryColor),
-  Project(projectTitle: 'Teamworks', totalTask: 5, color: kDarkPink),
-  Project(projectTitle: 'Home', totalTask: 10, color: kLightGreen),
-  Project(projectTitle: 'Meet', totalTask: 10, color: kDarkPurple),
+  Project(projectTitle: 'Project', totalTask: 10),
+  Project(projectTitle: 'Teamworks', totalTask: 5),
+  Project(projectTitle: 'Home', totalTask: 10),
+  Project(projectTitle: 'Meet', totalTask: 10),
 ];

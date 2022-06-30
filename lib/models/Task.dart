@@ -1,4 +1,3 @@
-
 import 'package:todo_list_app/constants.dart';
 import 'package:todo_list_app/database/Task_db.dart';
 import 'package:todo_list_app/models/Project.dart';
@@ -41,7 +40,7 @@ class Task extends Project {
     projectTitle = '',
     totalTask = 1,
     color = kPrimaryColor
-  }) : super(projectTitle: projectTitle, totalTask: totalTask, color: color);
+  }) : super(projectTitle: projectTitle, totalTask: totalTask);
 
   Task copy({
     int? id,
