@@ -66,7 +66,6 @@ CREATE TABLE $tableTasks (
       throw Exception('ID $id not found');
     }
   }
-  
 
   Future<List<Task>> readAllTask() async {
     final db = await instance.database;
